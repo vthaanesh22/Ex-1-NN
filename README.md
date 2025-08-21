@@ -1,7 +1,7 @@
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
-<H3>EX. NO.1</H3>
-<H3>DATE</H3>
+### ENTER YOUR NAME: Thaanesh V
+### ENTER YOUR REGISTER NO: 212223230228
+# EX. NO.1
+### DATE: 20/08/2025
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
 
 ## AIM:
@@ -37,14 +37,70 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
+```python
+import pandas as pd
+import io
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+
+#Read the dataset from drive
+df=pd.read_csv("Churn_Modelling.csv")
+
+# Checking Data
+df.head()
+df.tail()
+df.columns
+
+# Finding Missing 
+df.isnull().sum()
+
+#Handling Missing values
+df.fillna(method='ffill',inplace=True)
+
+#Check for Duplicates
+df.duplicated()
+
+#Detect Outliers
+df.describe()
+
+#Normalize the dataset
+data = df.drop(['Surname', 'Geography','Gender'], axis=1)
+scaler=MinMaxScaler()
+df1=pd.DataFrame(scaler.fit_transform(data))
+print(df1)
+
+#split the dataset into input and output
+X=df1.iloc[:,:-1].values
+y=df.iloc[:,-1].values
+print(X)
+print(y)
+
+#splitting the data for training & Testing
+x_train,x_test,y_train,y_test=train_test_split(X,y,test_size=0.3)
+
+#Print the training data and testing data
+print("X_train")
+print(x_train)
+print("Length of X_train",len(x_train))
+print("X_test")
+print(x_test)
+print("Length of X_test",len(x_test))
+
+```
 
 
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
+<img width="815" height="106" alt="image" src="https://github.com/user-attachments/assets/b30a84cd-674d-4f09-8f5e-2bf420153093" />
+<img width="322" height="640" alt="image" src="https://github.com/user-attachments/assets/a8e24c02-4370-40ef-97b2-eb638126b037" />
+<img width="1404" height="61" alt="image" src="https://github.com/user-attachments/assets/08fde62a-7251-4d72-968d-aa790eec79a3" />
+<img width="309" height="562" alt="image" src="https://github.com/user-attachments/assets/924aa7c7-f82e-471f-87b0-675180f2ec94" />
+<img width="1459" height="334" alt="image" src="https://github.com/user-attachments/assets/0888a57a-b983-42f6-aa3b-3374808cb777" />
+<img width="806" height="551" alt="image" src="https://github.com/user-attachments/assets/48090ddf-11b6-40b6-af73-8119de92e989" />
+<img width="682" height="291" alt="image" src="https://github.com/user-attachments/assets/103b6dfe-5df0-4bf5-9890-90846384a3ad" />
+<img width="791" height="409" alt="image" src="https://github.com/user-attachments/assets/45801ee0-1c7d-4937-a562-c813161187d5" />
+
 
 
 ## RESULT:
 Thus, Implementation of Data Preprocessing is done in python  using a data set downloaded from Kaggle.
-
-
